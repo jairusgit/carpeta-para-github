@@ -11,26 +11,34 @@
         unset($_SESSION['personajes'][$id]);
     }
 
+    if (isset($_GET['action']) && $_GET['action'] == "Ordenar"){
+        foreach ($_SESSION['personajes'] as $key => $row){
+            $fechas[$key] = $row['fecha'];
+        }
+        array_multisort($fechas, SORT_ASC, $_SESSION['personajes']);
+    }
+
+
     if (!isset($_SESSION['personajes'])){
         $_SESSION['personajes'] = [
             [
                 'nombre' => 'Pierce',
                 'apellidos' => 'Brosnan',
-                'edad' => 67,
+                'fecha' => DateTime::createFromFormat("d/m/Y","23/01/1943", new DateTimeZone("Europe/Madrid")),
                 'nacionalidad' => 'USA',
                 'foto' => 'pierce.jpg'
             ],
             [
                 'nombre' => 'Penélope',
                 'apellidos' => 'Cruz',
-                'edad' => 47,
+                'fecha' => DateTime::createFromFormat("d/m/Y","02/03/1974", new DateTimeZone("Europe/Madrid")),
                 'nacionalidad' => 'España',
                 'foto' => 'pe.jpg'
             ],
             [
                 'nombre' => 'Hugh',
                 'apellidos' => 'Grant',
-                'edad' => 61,
+                'fecha' => DateTime::createFromFormat("d/m/Y","13/12/1961", new DateTimeZone("Europe/Madrid")),
                 'nacionalidad' => 'UK',
                 'foto' => 'hugh.jpg'
             ],
@@ -54,6 +62,10 @@
         <a href="index.php?action=Reiniciar" title="Reiniciar">
             Reiniciar sesión
         </a>
+        <br>
+        <a href="index.php?action=Ordenar" title="Ordenar por fecha ascendente">
+            Ordenar por fecha ascendente
+        </a>
     </p>
     <ul class="cabecera">
         <li>Foto</li>
@@ -68,7 +80,7 @@
         </li>
         <li>Apellidos</li>
         <li>Nacionalidad</li>
-        <li>Edad</li>
+        <li>Fecha</li>
         <li>Acciones</li>
     </ul>
     <?php foreach ($_SESSION['personajes'] as $key => $row){ ?>
@@ -79,7 +91,7 @@
             <li><?php echo $row['nombre'] ?></li>
             <li><?php echo $row['apellidos'] ?></li>
             <li><?php echo $row['nacionalidad'] ?></li>
-            <li><?php echo $row['edad'] ?></li>
+            <li><?php echo $row['fecha']->format("d/m/Y") ?></li>
             <li>
                 <a href="ver.php?id=<?php echo $key ?>" title="Ver">
                     <span class="lnr lnr-eye"></span>
