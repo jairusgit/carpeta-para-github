@@ -33,10 +33,12 @@
         Hex: <input type="text" name="hex" placeholder="#000000"><br>
         <input type="submit" name="hex2rgb" value="Convertir a RGB"><br>
         <?php if ($mostrarRGB){ ?>
-            Color resultante en RGB: rgb(0,0,0)<br>
-            <div style="background-color: #000000"></div>
+            Color resultante en RGB: <?php echo $rgbCalc ?><br>
+            <div style="background-color: <?php echo $rgbCalc ?>"></div>
         <?php } ?>
-
+        <?php if ($errorRGB){ ?>
+            <p><?php echo $error ?></p>
+        <?php } ?>
     </form>
 </body>
 </html>
