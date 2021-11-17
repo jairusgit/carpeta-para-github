@@ -31,14 +31,14 @@
             [
                 'nombre' => 'Penélope',
                 'apellidos' => 'Cruz',
-                'fecha' => DateTime::createFromFormat("d/m/Y","02/03/1974", new DateTimeZone("Europe/Madrid")),
+                'fecha' => DateTime::createFromFormat("d/m/Y","24/03/1943", new DateTimeZone("Europe/Madrid")),
                 'nacionalidad' => 'España',
                 'foto' => 'pe.jpg'
             ],
             [
                 'nombre' => 'Hugh',
                 'apellidos' => 'Grant',
-                'fecha' => DateTime::createFromFormat("d/m/Y","13/12/1961", new DateTimeZone("Europe/Madrid")),
+                'fecha' => DateTime::createFromFormat("d/m/Y","30/12/1961", new DateTimeZone("Europe/Madrid")),
                 'nacionalidad' => 'UK',
                 'foto' => 'hugh.jpg'
             ],
