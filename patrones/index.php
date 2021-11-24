@@ -94,3 +94,32 @@ echo preg_match($regex,$string_si); //1 porque cumple el patrón
 echo "<br>";
 echo preg_match($regex,$string_no); //1 porque cumple el patrón
 echo "<br>";
+
+/*
+ * 1. Condicionantes para comprobar una URL:
+        * Debe empezar por http
+        * Después puede o no llevar una s
+        * Después, debe llevar ://
+        * Un texto de al menos 2 caracteres con letras (sin tildes), números y el guion medio (pero no el primero ni el último)
+        * Al menos un punto y nunca dos seguidos
+        * Los dos anteriores, una o más veces.
+        Puede haber un interrogante ?
+        Puede haber una o más barras /
+        Puede haber letras o números (con o sin tilde), así como cualquier carácter especial
+        * Insensible a mayúsculas y minúsculas
+        * El máximo es de 2048 caracteres
+ */
+
+//http://-ya.com NO
+//http://ya.com SI
+//http://a-b.com SI
+//http://ya-es.com SI
+//http://ya-.com NO
+
+$regex = "/^https?:\/\/(([a-z0-9]+\-?[a-z0-9]+)\.{1})+[a-z]{2,6}$/i";
+$string_si = 'http://ya.com';
+$string_no = "http://ya-.com";
+echo preg_match($regex,$string_si); //1 porque cumple el patrón
+echo "<br>";
+echo preg_match($regex,$string_no); //1 porque cumple el patrón
+echo "<br>";
